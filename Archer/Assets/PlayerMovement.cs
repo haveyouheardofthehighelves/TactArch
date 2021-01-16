@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GroundMovement(2500);
+        GroundMovement(3000);
         if (!Grounded)
         {
             WallJump(.3f,100); 
