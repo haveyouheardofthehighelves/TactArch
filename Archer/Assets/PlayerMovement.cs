@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {   [HeaderAttribute("Groundstuff")]
     bool Grounded = false;
+    [HeaderAttribute("Wallstuff")]
+    bool Sliding = false;
     // Start is called before the first frame update
     // Update is called once per frame
     void Update()
     {
-        GroundMovement(3000);
+        GroundMovement(2000);
         if (!Grounded)
         {
             WallJump(.3f,100); 
@@ -40,13 +42,17 @@ public class PlayerMovement : MonoBehaviour
             if(oldwall != newwall)
             {
                 rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y, slidespeed, float.MaxValue), 0);
+                Sliding = true;
                 if (Input.GetKeyDown("space"))
                 {
                    oldwall = newwall;
                     rb.AddForce(Vector2.up * jumpforce,ForceMode2D.Impulse);
                 }
             }
-
+            else
+            {
+                Sliding = false;
+            }
         }
         else if (b)
         {
@@ -54,28 +60,40 @@ public class PlayerMovement : MonoBehaviour
             if (oldwall != newwall)
             {
                 rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y, slidespeed, float.MaxValue), 0);
+                Sliding = true;
                 if (Input.GetKeyDown("space"))
                 {
                     oldwall = newwall;
                     rb.AddForce(Vector2.up * jumpforce,ForceMode2D.Impulse);
                 }
             }
-
+            else
+            {
+                Sliding = false;
+            }
+        }
+        else
+        {
+            Sliding = false;
         }
 
     }
     private void GroundMovement(float movespeed)
     {
       Rigidbody2D rb = GetComponent<Rigidbody2D>();
-      float x =  Input.GetAxis("Horizontal")*Time.deltaTime*movespeed;
-      if(Physics2D.CircleCast(FindChild(transform, "Body").position - FindChild(transform, "Body").up,.4f,Vector2.down,1f, ~LayerMask.GetMask("Player")))
+      float x;
+      if(Physics2D.OverlapCircle(FindChild(transform, "Feet").position,.4f, ~LayerMask.GetMask("Player")))
         {
             Grounded = true;
             ResetWalls();
             Jump(75);
+            x= Input.GetAxis("Horizontal") * Time.deltaTime * movespeed;
         }
         else
+        {
+            x = Input.GetAxis("Horizontal") * Time.deltaTime * movespeed;
             Grounded = false;
+        }
         Vector2 move = new Vector2(x, rb.velocity.y);
         rb.velocity = move;
     }   
@@ -89,4 +107,13 @@ public class PlayerMovement : MonoBehaviour
     {    oldwall = 0.1f;
          newwall = .2f;
     }
+    public bool CheckGrounded()
+    {
+        return Grounded;
+    }
+    public bool CheckSliding()
+    {
+        return Sliding;
+    }
+
 }
