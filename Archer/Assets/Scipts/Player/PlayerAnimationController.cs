@@ -19,10 +19,29 @@ public class PlayerAnimationController : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         if (a.CheckGrounded() && x != 0)
         {
+            print(anim.speed);
             SetAllFalse();
             anim.SetBool("IsWalking", true);
-           
-        }else if (!a.CheckGrounded() && !a.CheckSliding())
+            if (CheckFacing())
+            {
+                if (x > 0)
+                    anim.SetFloat("Playback", 1);
+
+                else if (x < 0)
+                    anim.SetFloat("Playback", -1);
+            }
+            else
+            {
+                if (x < 0)
+                    anim.SetFloat("Playback", 1);
+                if (x > 0)
+                    anim.SetFloat("Playback", -1);
+
+
+            }
+
+        }
+        else if (!a.CheckGrounded() && !a.CheckSliding())
         {
             SetAllFalse();
             anim.SetBool("IsJumping", true);
@@ -32,13 +51,19 @@ public class PlayerAnimationController : MonoBehaviour
             SetAllFalse();
             anim.SetBool("IsIdle", true);
         }
-      
+        
+    }
+    bool CheckFacing()
+    {
+        if (transform.localScale.x < 0)
+            return false;
+        else
+            return true;
     }
     void SetAllFalse()
     {
         foreach (AnimatorControllerParameter parameter in anim.parameters)
             anim.SetBool(parameter.name, false);
-        
     }
 
 
