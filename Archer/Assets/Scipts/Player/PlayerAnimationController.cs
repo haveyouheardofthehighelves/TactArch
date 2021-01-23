@@ -17,21 +17,22 @@ public class PlayerAnimationController : MonoBehaviour
     {
         PlayerMovement a = transform.parent.GetComponent<PlayerMovement>();
         x = Input.GetAxis("Horizontal");
-        if (a.CheckGrounded() && x == 0)
-        {
-            SetAllFalse();
-            anim.SetBool("IsIdle", true);
-        }
-        else if (a.CheckGrounded() && x != 0)
+        if (a.CheckGrounded() && x != 0)
         {
             SetAllFalse();
             anim.SetBool("IsWalking", true);
+           
+        }else if (!a.CheckGrounded() && !a.CheckSliding())
+        {
+            SetAllFalse();
+            anim.SetBool("IsJumping", true);
         }
         else
         {
             SetAllFalse();
             anim.SetBool("IsIdle", true);
         }
+      
     }
     void SetAllFalse()
     {

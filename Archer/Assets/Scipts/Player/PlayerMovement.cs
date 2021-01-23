@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{   [HeaderAttribute("Groundstuff")]
+{
+    [HeaderAttribute("Groundstuff")]
     bool Grounded = false;
     [HeaderAttribute("Wallstuff")]
     bool Sliding = false;
@@ -34,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     {
        
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        RaycastHit2D a = Physics2D.Raycast(FindChild(transform, "Body").position, Vector2.left,1.2f, ~LayerMask.GetMask("Player"));
-        RaycastHit2D b = Physics2D.Raycast(FindChild(transform, "Body").position, -Vector2.left, 1.2f, ~LayerMask.GetMask("Player"));
+        RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Feet").position, Vector2.left,1.2f, ~LayerMask.GetMask("Player"));
+        RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Feet").position, -Vector2.left, 1.2f, ~LayerMask.GetMask("Player"));
         if (a)
         {
             newwall = a.collider.GetInstanceID();
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y, slidespeed, float.MaxValue), 0);
                 Sliding = true;
                 if (Input.GetKeyDown("space"))
-                {   
+                {
                     oldwall = newwall;
                     rb.AddForce(Vector2.up * jumpforce,ForceMode2D.Impulse);
                 }
@@ -84,8 +85,9 @@ public class PlayerMovement : MonoBehaviour
     {
       Rigidbody2D rb = GetComponent<Rigidbody2D>();
       float x;
-      if(Physics2D.OverlapCircle(FindChild(transform, "Feet").position,.4f, ~LayerMask.GetMask("Player")))
+      if(Physics2D.OverlapCircle(FindChild(transform.Find("PlayerSprite"), "Feet").position,.4f, ~LayerMask.GetMask("Player")))
         {
+  
             Grounded = true;
             ResetWalls();
             Jump(75);
@@ -103,7 +105,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (Input.GetKeyDown("space"))
+        {
             rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+        }
     }
     private void ResetWalls()
     {    oldwall = 0.1f;
