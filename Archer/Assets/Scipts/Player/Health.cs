@@ -33,8 +33,9 @@ public class Health : MonoBehaviour
         }
     if((movement.CheckGrounded() || movement.CheckSliding())&& !firstime)
         {
-            Debug.Log("Displacement: " + (highestpoint - prevpos));
-            firstime = true;
+            float displacement = Mathf.Abs(highestpoint - prevpos);
+          //  Debug.Log("Displacement: " +);
+             firstime = true;
             
         }
 

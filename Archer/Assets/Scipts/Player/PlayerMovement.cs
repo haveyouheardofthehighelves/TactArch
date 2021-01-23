@@ -41,11 +41,12 @@ public class PlayerMovement : MonoBehaviour
             newwall = a.collider.GetInstanceID();
             if(oldwall != newwall)
             {
+                transform.Find("PlayerSprite").transform.localScale = new Vector3(Mathf.Abs(transform.Find("PlayerSprite").transform.localScale.x), transform.Find("PlayerSprite").transform.localScale.y, transform.Find("PlayerSprite").transform.localScale.z);
                 rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y, slidespeed, float.MaxValue), 0);
                 Sliding = true;
                 if (Input.GetKeyDown("space"))
-                {
-                   oldwall = newwall;
+                {   
+                    oldwall = newwall;
                     rb.AddForce(Vector2.up * jumpforce,ForceMode2D.Impulse);
                 }
             }
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (b)
         {
+            transform.Find("PlayerSprite").transform.localScale = new Vector3(-Mathf.Abs(transform.Find("PlayerSprite").transform.localScale.x), transform.Find("PlayerSprite").transform.localScale.y, transform.Find("PlayerSprite").transform.localScale.z);
             newwall = b.collider.GetInstanceID();
             if (oldwall != newwall)
             {
