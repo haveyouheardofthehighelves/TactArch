@@ -31,12 +31,14 @@ public class PlayerMovement : MonoBehaviour
     }
     float oldwall = 0.1f;
     float newwall = .2f;
+  
     private void WallJump(float slidespeed, float jumpforce)
     {
        
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Feet").position, Vector2.left,1.2f, ~LayerMask.GetMask("Player"));
         RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Feet").position, -Vector2.left, 1.2f, ~LayerMask.GetMask("Player"));
+       
         if (a)
         {
             newwall = a.collider.GetInstanceID();

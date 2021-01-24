@@ -19,7 +19,6 @@ public class PlayerAnimationController : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         if (a.CheckGrounded() && x != 0)
         {
-            print(anim.speed);
             SetAllFalse();
             anim.SetBool("IsWalking", true);
             if (CheckFacing())
