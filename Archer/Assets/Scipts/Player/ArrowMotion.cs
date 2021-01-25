@@ -11,7 +11,7 @@ public class ArrowMotion : MonoBehaviour
     {
         OnHit = false;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.AddForce(Vector2.right*2000);
+        //rb.AddForce(Vector2.right*500);
     }
 
     // Update is called once per frame
