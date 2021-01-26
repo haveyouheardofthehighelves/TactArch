@@ -71,8 +71,9 @@ public class ArrowMotion : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.tag != "Player")
+        if(collision.collider.gameObject.layer != 8)
         {
+            gameObject.layer = 0;
             OnHit = true;
         }
     }
