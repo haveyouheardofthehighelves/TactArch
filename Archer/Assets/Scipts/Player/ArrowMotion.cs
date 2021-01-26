@@ -47,7 +47,7 @@ public class ArrowMotion : MonoBehaviour
                     transform.SetParent(null);
                     rb = gameObject.AddComponent<Rigidbody2D>() as Rigidbody2D;
                     
-                    print(scalex);
+
                     if (scalex < 0)
                     {
                         forcemodifier = -Mathf.Abs(forcemodifier);
@@ -58,7 +58,7 @@ public class ArrowMotion : MonoBehaviour
                         forcemodifier = Mathf.Abs(forcemodifier);
 
                     forcemodmod = map(forcemodmod, 0, .5f, 0, 1);
-                    print(forcemodmod);
+
                     rb.AddForce(forcemodmod*forcemodifier * transform.right, ForceMode2D.Impulse);
                     forcemodmod = 0;
                 }

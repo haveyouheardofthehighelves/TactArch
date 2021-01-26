@@ -8,18 +8,23 @@ public class PlayerAnimationController : MonoBehaviour
     Animator anim;
     public Animator bow;
     Animator arrow;
+    public PlayerStats player;
     // Start is called before the first frame update
     void Start()
     {
-        arrow = bow.transform.GetChild(1).GetComponent<Animator>();
         anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //player body animations
         PlayerMovement a = transform.parent.GetComponent<PlayerMovement>();
+        if (!player.CheckAmmo())
+        {
+            arrow = bow.transform.GetChild(1).GetComponent<Animator>();
+        }
         x = Input.GetAxis("Horizontal");
         if (a.CheckGrounded() && x != 0)
         {

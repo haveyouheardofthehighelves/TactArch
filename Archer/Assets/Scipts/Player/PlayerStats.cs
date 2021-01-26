@@ -20,10 +20,12 @@ public class PlayerStats : MonoBehaviour
 
 
         if (transform.GetChild(0).GetChild(0).GetChild(0).childCount == 2)
-            OutofAmmo = true;
-        else
         {
             OutofAmmo = false;
+        }
+        else
+        {
+            OutofAmmo = true;
             PickupArrow();
         }
        
@@ -34,7 +36,7 @@ public class PlayerStats : MonoBehaviour
 
     private void PickupArrow()
     {
-        if(Input.GetMouseButtonDown(0)) {
+        if(Input.GetKey("e")) {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
@@ -44,18 +46,24 @@ public class PlayerStats : MonoBehaviour
                 Transform a = hit.transform;
                 if(hit.collider.tag.Contains("Arrow"))
                 {
-                    hit = Physics2D.Raycast(transform.Find("PlayerSprite").position,hit.transform.position- transform.Find("PlayerSprite").position,Mathf.Infinity,~LayerMask.GetMask("Player"));
+                    hit = Physics2D.Raycast(transform.Find("PlayerSprite").position,a.transform.position- transform.Find("PlayerSprite").position,Mathf.Infinity,~LayerMask.GetMask("Player"));
                     if (hit)
                     {
-                        if(Vector2.Distance(transform.Find("PlayerSprite").position, hit.transform.position) <= 3)
-                        {
-                            
+                        if (Vector2.Distance(transform.Find("PlayerSprite").position, a.transform.position) <= 4)
+                        {                      
+                            GameObject g = Resources.Load<GameObject>("Arrows/" + hit.transform.tag);
+                            Instantiate(g,transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).position,transform.GetChild(0).GetChild(0).rotation,transform.GetChild(0).GetChild(0).GetChild(0));
+                            Destroy(hit.transform.gameObject);
                         }
                     }
                 }
-             
+
             }
         }
     }
-    
+    public bool CheckAmmo()
+    {
+        return OutofAmmo;
+    }
+
 }
