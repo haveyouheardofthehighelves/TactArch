@@ -46,8 +46,11 @@ public class PlayerStats : MonoBehaviour
                 {
                     hit = Physics2D.Raycast(transform.Find("PlayerSprite").position,hit.transform.position- transform.Find("PlayerSprite").position,Mathf.Infinity,~LayerMask.GetMask("Player"));
                     if (hit)
-                    { 
-                        print("pickuparrow");
+                    {
+                        if(Vector2.Distance(transform.Find("PlayerSprite").position, hit.transform.position) <= 3)
+                        {
+                            
+                        }
                     }
                 }
              
