@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5f3cf7a8f81be42b1ada15c6ca6887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcemodifier: 10
 --- !u!50 &186600379
 Rigidbody2D:
   serializedVersion: 4
@@ -248,6 +249,7 @@ Transform:
   m_LocalPosition: {x: 0.156, y: 0.049, z: 0}
   m_LocalScale: {x: 0.5525715, y: 0.5525715, z: 0.5525715}
   m_Children:
+  - {fileID: 750613156}
   - {fileID: 882164945}
   m_Father: {fileID: 978451532}
   m_RootOrder: 0
@@ -732,6 +734,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &750613155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750613156}
+  m_Layer: 10
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750613156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750613155}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.024545094, y: 0.008000033, z: 0}
+  m_LocalScale: {x: 1.1346319, y: 1.1346319, z: 1.1346319}
+  m_Children: []
+  m_Father: {fileID: 373113838}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &882164943
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,8 +776,9 @@ GameObject:
   - component: {fileID: 882164944}
   - component: {fileID: 882164946}
   - component: {fileID: 882164947}
-  m_Layer: 0
-  m_Name: Arrrow
+  - component: {fileID: 882164948}
+  m_Layer: 10
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -792,7 +825,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -3752691747729280004, guid: 554ccd7557bbf71468a3a10f94dbc50b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -814,7 +847,7 @@ Transform:
   m_LocalScale: {x: 1.1346319, y: 1.1346319, z: 1.1346319}
   m_Children: []
   m_Father: {fileID: 373113838}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &882164946
 Animator:
@@ -845,12 +878,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.20201181, y: -0.0017889473}
   m_Size: {x: 0.6757666, y: 0.16091552}
   m_Direction: 1
+--- !u!114 &882164948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882164943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f3cf7a8f81be42b1ada15c6ca6887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forcemodifier: 30
 --- !u!1 &941165823
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,7 +1018,7 @@ GameObject:
   - component: {fileID: 978451534}
   - component: {fileID: 978451533}
   m_Layer: 0
-  m_Name: Parm_0
+  m_Name: Parm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1659,6 +1705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5f3cf7a8f81be42b1ada15c6ca6887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcemodifier: 10
 --- !u!50 &1963430024
 Rigidbody2D:
   serializedVersion: 4
@@ -1798,3 +1845,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5456e604fe88342829456fec44e0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bow: {fileID: 373113840}

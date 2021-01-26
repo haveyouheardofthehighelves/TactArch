@@ -34,10 +34,11 @@ public class PlayerMovement : MonoBehaviour
   
     private void WallJump(float slidespeed, float jumpforce)
     {
-       
+        LayerMask c = 1 << 8 | 1 << 10;
+        c = ~c;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Feet").position, Vector2.left,1.2f, ~LayerMask.GetMask("Player"));
-        RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Feet").position, -Vector2.left, 1.2f, ~LayerMask.GetMask("Player"));
+        RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, Vector2.left, 1.2f, c);
+        RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, -Vector2.left, 1.2f, c);
        
         if (a)
         {
