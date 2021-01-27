@@ -13,9 +13,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GroundMovement(2000);
+       
+    }
+
+    private void FixedUpdate()
+    {
         if (!Grounded)
         {
-            WallJump(.3f,100); 
+            WallJump(.3f, 100);
         }
     }
     private Transform FindChild(Transform a,string find)
