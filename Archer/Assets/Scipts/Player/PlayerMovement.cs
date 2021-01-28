@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!Grounded)
         {
-            WallJump(-1f, 40);
+            WallJump(-1f, 70);
         }
     }
 
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
   
             Grounded = true;
             ResetWalls();
-            Jump(30);
+            Jump(50);
             x= Input.GetAxis("Horizontal") * Time.deltaTime * movespeed;
         }
         else

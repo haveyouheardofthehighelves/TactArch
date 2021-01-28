@@ -48,7 +48,7 @@ public class ArrowMotion : MonoBehaviour
                         float scalex = transform.parent.parent.parent.localScale.x;
                         transform.SetParent(null);
                         rb = gameObject.AddComponent<Rigidbody2D>() as Rigidbody2D;
-
+                        rb.gravityScale = 3;
 
                         if (scalex < 0)
                         {
@@ -79,6 +79,11 @@ public class ArrowMotion : MonoBehaviour
         {
             gameObject.layer = 0;
             OnHit = true;
+            if (collision.relativeVelocity.magnitude > 0)
+            {
+             
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
     }
     float map(float x, float in_min, float in_max, float out_min, float out_max)

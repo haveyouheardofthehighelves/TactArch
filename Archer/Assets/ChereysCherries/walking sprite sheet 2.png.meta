@@ -104,10 +104,10 @@ TextureImporter:
       name: walking sprite sheet 2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1000
-        height: 1511
+        x: 324
+        y: 322
+        width: 352
+        height: 730
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,10 +125,10 @@ TextureImporter:
       name: walking sprite sheet 2_1
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 0
-        width: 1000
-        height: 1511
+        x: 1324
+        y: 322
+        width: 352
+        height: 732
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: walking sprite sheet 2_2
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 1000
-        height: 1511
+        x: 2311
+        y: 322
+        width: 378
+        height: 726
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,10 +167,10 @@ TextureImporter:
       name: walking sprite sheet 2_3
       rect:
         serializedVersion: 2
-        x: 3000
-        y: 0
-        width: 1000
-        height: 1511
+        x: 3324
+        y: 322
+        width: 352
+        height: 732
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

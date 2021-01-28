@@ -78,6 +78,11 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if (bow.transform.childCount==2)
         {
+            foreach (AnimatorControllerParameter parameter in bow.parameters)
+            {
+                bool set = bow.GetBool(parameter.name);
+                arrow.SetBool(parameter.name, set);
+            }
             if (Input.GetMouseButton(0) && Input.GetMouseButton(1) && bow.GetBool("IsCocking"))
             {
                 SetAllFalse(bow);
@@ -88,16 +93,12 @@ public class PlayerAnimationController : MonoBehaviour
                 SetAllFalse(bow);
                 bow.SetBool("IsCocking", true);
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0) && bow.GetBool("IsCocking"))
             {
                 SetAllFalse(bow);
                 bow.SetBool("IsReleasing", true);
             }
-            foreach (AnimatorControllerParameter parameter in bow.parameters)
-            {
-                bool set = bow.GetBool(parameter.name);
-                arrow.SetBool(parameter.name, set);
-            }
+         
         }
         else
         {
