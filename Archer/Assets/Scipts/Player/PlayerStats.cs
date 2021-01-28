@@ -44,7 +44,7 @@ public class PlayerStats : MonoBehaviour
             if (hit)
             {
                 Transform a = hit.transform;
-                if(hit.collider.tag.Contains("Arrow"))
+                if (hit.collider.tag.Contains("Arrow"))
                 {
                     hit = Physics2D.Raycast(transform.Find("PlayerSprite").position,a.transform.position- transform.Find("PlayerSprite").position,Mathf.Infinity,~LayerMask.GetMask("Player"));
                     if (hit)
@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
                         if (Vector2.Distance(transform.Find("PlayerSprite").position, a.transform.position) <= 4)
                         {                      
                             GameObject g = Resources.Load<GameObject>("Arrows/" + hit.transform.tag);
-                            Instantiate(g,transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).position,transform.GetChild(0).GetChild(0).rotation,transform.GetChild(0).GetChild(0).GetChild(0));
+                            Instantiate(g,transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).position,transform.GetChild(0).GetChild(0).GetChild(0).rotation,transform.GetChild(0).GetChild(0).GetChild(0));
                             Destroy(hit.transform.gameObject);
                         }
                     }

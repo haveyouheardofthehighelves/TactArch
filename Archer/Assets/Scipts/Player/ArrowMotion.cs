@@ -38,30 +38,34 @@ public class ArrowMotion : MonoBehaviour
 
         }
         else
-        {    if(transform.parent.name == "Bow")
+        {    if(transform.parent)
             {
-                if (this.GetComponent<Animator>().GetBool("IsReleasing"))
+                if(transform.parent.name == "Bow")
                 {
-                    transform.GetComponent<Collider2D>().isTrigger = false;
-                    float scalex = transform.parent.parent.parent.localScale.x;
-                    transform.SetParent(null);
-                    rb = gameObject.AddComponent<Rigidbody2D>() as Rigidbody2D;
-                    
-
-                    if (scalex < 0)
+                    if (this.GetComponent<Animator>().GetBool("IsReleasing"))
                     {
-                        forcemodifier = -Mathf.Abs(forcemodifier);
-                        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                        transform.GetComponent<Collider2D>().isTrigger = false;
+                        float scalex = transform.parent.parent.parent.localScale.x;
+                        transform.SetParent(null);
+                        rb = gameObject.AddComponent<Rigidbody2D>() as Rigidbody2D;
+
+
+                        if (scalex < 0)
+                        {
+                            forcemodifier = -Mathf.Abs(forcemodifier);
+                            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                        }
+                        else
+                            forcemodifier = Mathf.Abs(forcemodifier);
+
+                        forcemodmod = map(forcemodmod, 0, .5f, 0, 1);
+                        rb.AddForce(forcemodmod * forcemodifier * transform.right, ForceMode2D.Impulse);
+                        forcemodmod = 0;
 
                     }
-                    else
-                        forcemodifier = Mathf.Abs(forcemodifier);
-
-                    forcemodmod = map(forcemodmod, 0, .5f, 0, 1);
-
-                    rb.AddForce(forcemodmod*forcemodifier * transform.right, ForceMode2D.Impulse);
-                    forcemodmod = 0;
                 }
+        
             }   
             //Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>() as Rigidbody2D;
 

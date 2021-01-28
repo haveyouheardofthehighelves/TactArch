@@ -13,16 +13,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GroundMovement(2000);
-       
-    }
 
-    private void FixedUpdate()
-    {
         if (!Grounded)
         {
-            WallJump(.3f, 100);
+            WallJump(-1f, 40);
         }
     }
+
+   
     private Transform FindChild(Transform a,string find)
     {
         foreach(Transform child in a)
@@ -42,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
         LayerMask c = 1 << 8 | 1 << 10;
         c = ~c;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, Vector2.left, 1.2f, c);
-        RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, -Vector2.left, 1.2f, c);
-       
+        RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, Vector2.left, 2f, c);
+        RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, -Vector2.left, 2f, c);
+
         if (a)
         {
             newwall = a.collider.GetInstanceID();
@@ -98,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
   
             Grounded = true;
             ResetWalls();
-            Jump(75);
+            Jump(30);
             x= Input.GetAxis("Horizontal") * Time.deltaTime * movespeed;
         }
         else
