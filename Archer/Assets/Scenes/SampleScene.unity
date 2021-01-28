@@ -130,29 +130,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5565240277815960224, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960226, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960226, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.9118702
+      value: 5.935133
       objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960226, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.9118702
+      value: 5.935133
       objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960226, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.9118702
+      value: 5.935133
       objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960226, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.62
+      value: 17.43
       objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960226, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.008
+      value: -1.83
       objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960226, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_LocalPosition.z
@@ -188,6 +192,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565240277815960252, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
       propertyPath: m_Name
+      value: RegArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565240277815960252, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565240277815960252, guid: 93db3762b14e30b45a2b3417a738cd04, type: 3}
+      propertyPath: m_TagString
       value: RegArrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
