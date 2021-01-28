@@ -57,6 +57,8 @@ public class BowMechanics : MonoBehaviour
 
         if (!check.CheckSliding())
         {
+            GameObject g = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+            g.GetComponent<SpriteRenderer>().enabled = false;
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = Camera.main.nearClipPlane;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -64,9 +66,21 @@ public class BowMechanics : MonoBehaviour
             mousePosition.x - transform.position.x,
             mousePosition.y - transform.position.y);
             if (transform.parent.localScale.x > 0)
-                transform.right = direction;
+                g.transform.right = direction;
             else
-                transform.right = -direction;
+                g.transform.right = -direction;
+            float Angle = g.transform.eulerAngles.z;
+            if (Angle >= 0 && Angle <= 80 || Angle >= 100 && Angle <= 260 || Angle>=280 && Angle<=360)
+            {
+                print("within constraints");
+                transform.right = g.transform.right;
+            }
+            else
+            {
+                print("not within constraints");
+            }
+            Destroy(g);
+        
         }
         else
         {
