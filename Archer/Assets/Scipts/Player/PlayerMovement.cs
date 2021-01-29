@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GroundMovement(2000);
+        GroundMovement(2500);
 
         if (!Grounded)
         {
