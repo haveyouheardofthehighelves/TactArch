@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!Grounded)
         {
-            WallJump(-1f, 70);
+            WallJump(-1f, 30);
         }
     }
 
@@ -42,19 +42,19 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, Vector2.left, 2f, c);
         RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, -Vector2.left, 2f, c);
-
-        if (a)
+        Vector3 scale = transform.Find("PlayerSprite").transform.localScale;
+        if (a && a.collider.tag != "cantwalljump" && scale.x>0)
         {
             newwall = a.collider.GetInstanceID();
             if(oldwall != newwall)
             {
-                transform.Find("PlayerSprite").transform.localScale = new Vector3(Mathf.Abs(transform.Find("PlayerSprite").transform.localScale.x), transform.Find("PlayerSprite").transform.localScale.y, transform.Find("PlayerSprite").transform.localScale.z);
+                //transform.Find("PlayerSprite").transform.localScale = new Vector3(Mathf.Abs(transform.Find("PlayerSprite").transform.localScale.x), transform.Find("PlayerSprite").transform.localScale.y, transform.Find("PlayerSprite").transform.localScale.z);
                 rb.velocity = new Vector3(rb.velocity.x, Mathf.Clamp(rb.velocity.y, slidespeed, float.MaxValue), 0);
                 Sliding = true;
                 if (Input.GetKeyDown("space"))
                 {
                     oldwall = newwall;
-                    rb.AddForce(Vector2.up * jumpforce,ForceMode2D.Impulse);
+                    rb.velocity = new Vector2(rb.velocity.x,jumpforce);
                 }
             }
             else
@@ -62,9 +62,9 @@ public class PlayerMovement : MonoBehaviour
                 Sliding = false;
             }
         }
-        else if (b)
+        else if (b && b.collider.tag != "cantwalljump" && scale.x<0)
         {
-            transform.Find("PlayerSprite").transform.localScale = new Vector3(-Mathf.Abs(transform.Find("PlayerSprite").transform.localScale.x), transform.Find("PlayerSprite").transform.localScale.y, transform.Find("PlayerSprite").transform.localScale.z);
+            //transform.Find("PlayerSprite").transform.localScale = new Vector3(-Mathf.Abs(transform.Find("PlayerSprite").transform.localScale.x), transform.Find("PlayerSprite").transform.localScale.y, transform.Find("PlayerSprite").transform.localScale.z);
             newwall = b.collider.GetInstanceID();
             if (oldwall != newwall)
             {
@@ -73,18 +73,16 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKeyDown("space"))
                 {
                     oldwall = newwall;
-                    rb.AddForce(Vector2.up * jumpforce,ForceMode2D.Impulse);
+                    rb.velocity = new Vector2(rb.velocity.x,jumpforce);
                 }
             }
             else
-            {
                 Sliding = false;
-            }
+            
         }
         else
-        {
             Sliding = false;
-        }
+        
 
     }
     private void GroundMovement(float movespeed)
@@ -96,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
   
             Grounded = true;
             ResetWalls();
-            Jump(50);
+            Jump(20);
             x= Input.GetAxis("Horizontal") * Time.deltaTime * movespeed;
         }
         else
@@ -112,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (Input.GetKeyDown("space"))
         {
-            rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            rb.velocity = new Vector2(rb.velocity.x,jumpforce);
         }
     }
     private void ResetWalls()
