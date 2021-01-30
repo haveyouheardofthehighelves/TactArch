@@ -1,0 +1,20 @@
+Player: 
+- Make Basic movement
+	- Ground Behavior
+- Make Wall Jump
+	- Wall Behavior	
+	- Clamp Rotation on the Wall
+- Flip character After certain amount of radians. 
+
+UI:
+- Stamina Bar
+- Health Bar
+- Basket of Arrows 
+- Click,drag, and release to shoot 
+Arrows: 
+- Make Arrow Physics 
+- Make different types of arrows 
+Particles
+- Work with Particle system
+- Blood particles on hit 
+- find other uses for particles
