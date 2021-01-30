@@ -12,12 +12,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GroundMovement(2500);
+    
+        GroundMovement(15);
 
         if (!Grounded)
         {
             WallJump(-1f, 30);
         }
+
+        print(CheckGrounded());
+    
     }
 
    
@@ -43,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D a = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, Vector2.left, 2f, c);
         RaycastHit2D b = Physics2D.Raycast(FindChild(transform.Find("PlayerSprite"), "Body").position, -Vector2.left, 2f, c);
         Vector3 scale = transform.Find("PlayerSprite").transform.localScale;
-        if (a && a.collider.tag != "cantwalljump" && scale.x>0)
+        if (a && a.collider.tag != "cantwalljump" && scale.x>0 && !a.collider.tag.Contains("Arrow"))
         {
             newwall = a.collider.GetInstanceID();
             if(oldwall != newwall)
@@ -62,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
                 Sliding = false;
             }
         }
-        else if (b && b.collider.tag != "cantwalljump" && scale.x<0)
+        else if (b && b.collider.tag != "cantwalljump" && scale.x<0 && !b.collider.tag.Contains("Arrow"))
         {
             //transform.Find("PlayerSprite").transform.localScale = new Vector3(-Mathf.Abs(transform.Find("PlayerSprite").transform.localScale.x), transform.Find("PlayerSprite").transform.localScale.y, transform.Find("PlayerSprite").transform.localScale.z);
             newwall = b.collider.GetInstanceID();
@@ -89,17 +93,19 @@ public class PlayerMovement : MonoBehaviour
     {
       Rigidbody2D rb = GetComponent<Rigidbody2D>();
       float x;
-      if(Physics2D.OverlapCircle(FindChild(transform.Find("PlayerSprite"), "Feet").position,.4f, ~LayerMask.GetMask("Player")))
+      LayerMask layers =  ~(1 << 8 | 1 << 10);
+
+      if(Physics2D.OverlapCircle(FindChild(transform.Find("PlayerSprite"), "Feet").position,.4f,layers))
         {
   
             Grounded = true;
             ResetWalls();
             Jump(20);
-            x= Input.GetAxis("Horizontal") * Time.deltaTime * movespeed;
+            x= Input.GetAxis("Horizontal") * movespeed;
         }
         else
         {
-            x = Input.GetAxis("Horizontal") * Time.deltaTime * movespeed;
+            x = Input.GetAxis("Horizontal") * movespeed;
             Grounded = false;
         }
         Vector2 move = new Vector2(x, rb.velocity.y);

@@ -8,18 +8,19 @@ public class ArrowMotion : MonoBehaviour
     bool OnHit;
     float forcemodmod;
     public float forcemodifier = 10;
+    GameObject a;
     // Start is called before the first frame update
     void Start()
     {
         OnHit = false;
-       
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+
+
         if (this.GetComponent<Animator>().GetBool("IsCocking"))
             forcemodmod += Time.deltaTime;
 
@@ -75,15 +76,23 @@ public class ArrowMotion : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.gameObject.layer != 8)
+        if(collision.collider.gameObject.layer != 8) 
         {
             gameObject.layer = 0;
             OnHit = true;
             if (collision.relativeVelocity.magnitude > 0)
             {
-             
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                transform.GetChild(0).gameObject.SetActive(true);
+
             }
+            if(collision.collider.transform.name == "dummy2")
+            {
+                collision.collider.transform.GetComponent<Collider2D>().isTrigger = true;
+                transform.GetComponent<Collider2D>().isTrigger = true;
+            }
+              
+
         }
     }
     float map(float x, float in_min, float in_max, float out_min, float out_max)

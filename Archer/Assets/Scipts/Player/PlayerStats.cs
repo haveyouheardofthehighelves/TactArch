@@ -49,7 +49,7 @@ public class PlayerStats : MonoBehaviour
                     hit = Physics2D.Raycast(transform.Find("PlayerSprite").position,a.transform.position- transform.Find("PlayerSprite").position,Mathf.Infinity,~LayerMask.GetMask("Player"));
                     if (hit)
                     {
-                        if (Vector2.Distance(transform.Find("PlayerSprite").position, a.transform.position) <= 5)
+                        if (Vector2.Distance(transform.Find("PlayerSprite").position, a.transform.position) <= 6.5)
                         {                      
                             GameObject g = Resources.Load<GameObject>("Arrows/" + hit.transform.tag);
                             Instantiate(g,transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).position,transform.GetChild(0).GetChild(0).GetChild(0).rotation,transform.GetChild(0).GetChild(0).GetChild(0));
