@@ -12,6 +12,7 @@ public class PlayerAnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         anim = this.GetComponent<Animator>();
     }
 
@@ -73,7 +74,7 @@ public class PlayerAnimationController : MonoBehaviour
         foreach (AnimatorControllerParameter parameter in ani.parameters)
             ani.SetBool(parameter.name, false);
     }
-
+   
     void BowAnimations(Animator bow)
     {
         if (bow.transform.childCount==2)
